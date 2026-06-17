@@ -1,0 +1,5 @@
+# Never commit real secrets or local config
+telegram.env
+hooks/devices.conf
+*.log
+.DS_Store

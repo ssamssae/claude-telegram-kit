@@ -1,0 +1,27 @@
+{
+  "_comment": "Merge these hook blocks into your ~/.claude/settings.json. If you already have hooks, ADD these entries to the existing arrays rather than replacing the whole file. Paths assume the hooks were installed to ~/.claude/hooks/ (run install.sh).",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          { "type": "command", "command": "~/.claude/hooks/session-device-id.sh" }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "AskUserQuestion|ExitPlanMode|EnterPlanMode",
+        "hooks": [
+          { "type": "command", "command": "~/.claude/hooks/telegram-ui-guard.sh" }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          { "type": "command", "command": "~/.claude/hooks/telegram-reply-check.sh" }
+        ]
+      }
+    ]
+  }
+}
