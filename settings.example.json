@@ -1,5 +1,5 @@
 {
-  "_comment": "Merge these hook blocks into your ~/.claude/settings.json. If you already have hooks, ADD these entries to the existing arrays rather than replacing the whole file. Paths assume the hooks were installed to ~/.claude/hooks/ (run install.sh).",
+  "_comment": "Legacy manual install only. Plugin installs load hooks/hooks.json automatically. If you use install.sh, merge these hook blocks into ~/.claude/settings.json and add to existing arrays rather than replacing the whole file.",
   "hooks": {
     "SessionStart": [
       {

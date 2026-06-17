@@ -1,0 +1,19 @@
+{
+  "name": "claude-telegram-kit",
+  "version": "0.1.0",
+  "description": "Portable Telegram safety hooks for Claude Code sessions that run through the official Telegram channel plugin.",
+  "author": {
+    "name": "ssamssae"
+  },
+  "repository": "https://github.com/ssamssae/claude-telegram-kit",
+  "homepage": "https://github.com/ssamssae/claude-telegram-kit#readme",
+  "license": "MIT",
+  "keywords": [
+    "telegram",
+    "claude-code",
+    "hooks",
+    "mcp",
+    "automation"
+  ],
+  "hooks": "./hooks/hooks.json"
+}
