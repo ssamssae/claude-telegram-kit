@@ -42,7 +42,7 @@ Then message the bot from Telegram and complete the pairing flow in Claude Code:
 /telegram:access policy allowlist
 ```
 
-### 3. Install this hook kit as a private Claude Code plugin
+### 3. Install this hook kit as a Claude Code plugin
 
 From a shell on the new machine:
 
