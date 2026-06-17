@@ -2,7 +2,7 @@
 
 **Run Claude Code from your phone over Telegram, and make sure it actually answers.**
 
-This repository packages three dependency-light Claude Code hooks as a private
+This repository packages three dependency-light Claude Code hooks as a
 Claude Code plugin:
 
 | Hook | What it does |
