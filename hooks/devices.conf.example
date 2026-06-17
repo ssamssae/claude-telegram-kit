@@ -1,0 +1,11 @@
+# devices.conf — map each machine's hostname to an emoji + label.
+# Format: hostname_glob|emoji|label   (one per line, '#' comments allowed)
+# The hook matches `hostname` against the glob in order; first match wins.
+#
+# Copy this to devices.conf and edit. Single-machine users can skip the file
+# entirely and instead set TELEGRAM_DEVICE_EMOJI / TELEGRAM_DEVICE_LABEL in env.
+
+my-laptop*|💻|laptop
+my-desktop*|🖥|desktop
+my-server*|🏭|server
+*|📱|unknown
