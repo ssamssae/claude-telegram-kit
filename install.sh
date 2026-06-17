@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# install.sh — copy the hooks into ~/.claude/hooks/ and print next steps.
-# Does NOT touch your settings.json (you merge that yourself — see settings.example.json).
+# install.sh — legacy manual install that copies hooks into ~/.claude/hooks/.
+# The preferred new-machine flow is the Claude Code plugin install in README.md.
+# This script does NOT touch settings.json.
 set -euo pipefail
 
 SRC="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -20,12 +21,21 @@ fi
 
 cat <<EOF
 
-Done. Final step — merge the hook blocks from:
+Done. This was the legacy manual install.
+
+Preferred plugin install for new machines:
+  cd $SRC
+  ./scripts/validate-plugin.sh
+  claude plugin marketplace add $SRC
+  claude plugin install claude-telegram-kit@claude-telegram-kit --scope user
+
+Manual-install final step: merge the hook blocks from:
   $SRC/settings.example.json
 into your ~/.claude/settings.json (add to existing arrays; don't overwrite).
 
 Then start a new Claude Code session. The reply-enforcement hook is active
 immediately; the device emoji prefix shows up on the next session start.
 
-Requires: jq (the hooks parse the transcript with it).
+Requires: jq (the hooks parse the transcript with it). The Telegram MCP bridge
+is provided by telegram@claude-plugins-official.
 EOF

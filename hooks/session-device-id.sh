@@ -11,8 +11,10 @@
 #
 # Resolution order for this machine's emoji + label:
 #   1. Env vars TELEGRAM_DEVICE_EMOJI / TELEGRAM_DEVICE_LABEL (simplest, per-machine).
-#   2. devices.conf — lines of "hostname_glob|emoji|label" matched against `hostname`.
-#   3. Fallback: 📱 / unknown.
+#   2. DEVICES_CONF, if set.
+#   3. ~/.claude/claude-telegram-kit/devices.conf, if present.
+#   4. devices.conf next to this script.
+#   5. Fallback: 📱 / unknown.
 #
 # Registered as a SessionStart hook (see settings.example.json).
 
@@ -20,8 +22,20 @@ EMOJI="${TELEGRAM_DEVICE_EMOJI:-}"
 LABEL="${TELEGRAM_DEVICE_LABEL:-}"
 HOST=$(hostname 2>/dev/null || echo unknown)
 
-# devices.conf lives next to this script by default; override with DEVICES_CONF.
-CONF="${DEVICES_CONF:-$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/devices.conf}"
+# For plugin installs, keep per-machine local data outside the plugin cache.
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+USER_CONF=""
+if [ -n "${HOME:-}" ]; then
+  USER_CONF="$HOME/.claude/claude-telegram-kit/devices.conf"
+fi
+
+if [ -n "${DEVICES_CONF:-}" ]; then
+  CONF="$DEVICES_CONF"
+elif [ -n "$USER_CONF" ] && [ -f "$USER_CONF" ]; then
+  CONF="$USER_CONF"
+else
+  CONF="$SCRIPT_DIR/devices.conf"
+fi
 
 if [ -z "$EMOJI" ] && [ -f "$CONF" ]; then
   while IFS='|' read -r pattern emoji label; do

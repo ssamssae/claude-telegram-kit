@@ -1,0 +1,20 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "claude-telegram-kit",
+  "description": "Private marketplace entry for the Claude Telegram hook kit.",
+  "owner": {
+    "name": "ssamssae"
+  },
+  "plugins": [
+    {
+      "name": "claude-telegram-kit",
+      "description": "Portable Telegram safety hooks for Claude Code sessions that run through the official Telegram channel plugin.",
+      "author": {
+        "name": "ssamssae"
+      },
+      "category": "productivity",
+      "source": ".",
+      "homepage": "https://github.com/ssamssae/claude-telegram-kit"
+    }
+  ]
+}
