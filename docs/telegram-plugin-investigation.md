@@ -25,7 +25,7 @@ declares only the safety hooks.
 Fresh installs therefore use two explicit steps:
 
 1. Install and configure `telegram@claude-plugins-official`.
-2. Install `claude-telegram-kit` from this private marketplace/repository.
+2. Install `telegram-reply-kit` from this public marketplace/repository (plugin ID from version 0.1.1).
 
 That keeps this repository small, avoids duplicating upstream plugin code, and
 lets the Telegram bridge continue to receive marketplace updates independently.

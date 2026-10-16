@@ -1,6 +1,6 @@
 {
-  "name": "claude-telegram-kit",
-  "version": "0.1.0",
+  "name": "telegram-reply-kit",
+  "version": "0.1.1",
   "description": "Portable Telegram safety hooks for Claude Code sessions that run through the official Telegram channel plugin.",
   "author": {
     "name": "ssamssae"

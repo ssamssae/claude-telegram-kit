@@ -53,12 +53,15 @@ jq -r '
   | select(.type? == "command")
   | .command
 ' "$ROOT/hooks/hooks.json" | while IFS= read -r raw_command; do
-  command="${raw_command//\$\{CLAUDE_PLUGIN_ROOT\}/$ROOT}"
-  read -r runner target _rest <<< "$command"
-  case "$runner" in
-    bash|sh) hook_path="$target" ;;
-    *) hook_path="$runner" ;;
+  # Resolve the supported command forms as data. Do not eval manifest content.
+  case "$raw_command" in
+    bash\ *|sh\ *) hook_path="${raw_command#* }" ;;
+    *) hook_path="$raw_command" ;;
   esac
+  case "$hook_path" in
+    \"*\") hook_path="${hook_path:1:${#hook_path}-2}" ;;
+  esac
+  hook_path="${hook_path//\$\{CLAUDE_PLUGIN_ROOT\}/$ROOT}"
   if [[ "$hook_path" == \~/* ]]; then
     hook_path="$HOME/${hook_path#\~/}"
   fi

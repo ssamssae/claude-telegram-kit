@@ -7,7 +7,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/session-device-id.sh",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/session-device-id.sh\"",
             "timeout": 10
           }
         ]
@@ -19,7 +19,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/telegram-ui-guard.sh",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/telegram-ui-guard.sh\"",
             "timeout": 10
           }
         ]
@@ -31,7 +31,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/telegram-reply-check.sh",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/telegram-reply-check.sh\"",
             "timeout": 10
           }
         ]
