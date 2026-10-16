@@ -51,7 +51,7 @@ git clone git@github.com:ssamssae/claude-telegram-kit.git ~/claude-telegram-kit
 cd ~/claude-telegram-kit
 ./scripts/validate-plugin.sh
 claude plugin marketplace add ~/claude-telegram-kit
-claude plugin install claude-telegram-kit@claude-telegram-kit --scope user
+claude plugin install telegram-reply-kit@telegram-reply-kit --scope user
 ```
 
 Start Claude Code with the Telegram channel enabled:
@@ -63,6 +63,19 @@ claude --channels plugin:telegram@claude-plugins-official
 After install, Claude Code loads `hooks/hooks.json` from this plugin. The hook
 commands use `${CLAUDE_PLUGIN_ROOT}`, so they keep working from the plugin cache
 instead of depending on `~/.claude/hooks`.
+
+The plugin and marketplace IDs are `telegram-reply-kit` from version 0.1.1.
+The GitHub repository and local device configuration directory keep the name
+`claude-telegram-kit`. Current Claude Code validation reserves the `claude-`
+prefix for official plugin names.
+
+If you already installed version 0.1.0, inspect your installed plugin and
+marketplace entries before migrating. Plan the change for a suitable session
+boundary. Remove or disable the old `claude-telegram-kit` plugin entry before
+enabling the new ID so both copies do not register the same hooks. Use your
+installed CLI's plugin help for the current removal/update commands. Preserve
+your device configuration and unrelated plugins. Updating this repository alone
+does not replace an installed plugin or reload a running session.
 
 ### 4. Optional device prefixes
 
@@ -124,6 +137,9 @@ If your Telegram plugin exposes a different reply tool, set
 Failure paths exit `0`, so a broken hook should not wedge a session. The Stop
 hook also honors `stop_hook_active` to avoid block loops.
 
+A reply-tool call does not prove successful delivery. The guard does not inspect
+the tool result or confirm that the user received the message in Telegram.
+
 ## Validation
 
 Run the local validation suite before committing:
@@ -133,8 +149,9 @@ Run the local validation suite before committing:
 ```
 
 `tests/run.sh` validates the plugin manifest, hook schema, hook path resolution,
-and the core behavior of all three hooks without using Telegram secrets. Also
-run the directive-provided forbidden-literal scan from the repository root before
+and the core behavior of all three hooks, including execution from a path with
+spaces, without using Telegram secrets. See [verification paths](docs/feature-map.md).
+Also run the directive-provided forbidden-literal scan from the repository root before
 committing.
 
 ## Security
